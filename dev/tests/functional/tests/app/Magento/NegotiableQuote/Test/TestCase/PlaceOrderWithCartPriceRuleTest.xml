@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Magento\NegotiableQuote\Test\TestCase\PlaceOrderWithCartPriceRuleTest" summary="Negotiable quote test">
+        <variation name="PlaceOrderWithCartPriceRuleTestVariation1" summary="Place order with cart price rule" ticketId="B2B-1950">
+            <data name="configData" xsi:type="string">company_enable, negotiable_quote_enable, display_excluding_including_tax</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="company" xsi:type="string">company_with_required_fields_and_sales_rep</data>
+            <data name="products/0" xsi:type="string">catalogProductSimple::negotiable_product_100_dollar</data>
+            <data name="products/1" xsi:type="string">catalogProductSimple::negotiable_product_200_dollar</data>
+            <data name="qtys/0" xsi:type="number">1</data>
+            <data name="qtys/1" xsi:type="number">1</data>
+            <data name="address/dataset" xsi:type="string">US_address_1_without_email</data>
+            <data name="taxRule" xsi:type="string">us_full_tax_rule</data>
+            <data name="salesRule" xsi:type="string">negotiable_quote_active_sales_rule_with_complex_conditions</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="updateData/historyLog/0" xsi:type="string">Comment</data>
+            <data name="updateData/proposedShippingPrice" xsi:type="string">10</data>
+            <data name="updateData/discountType" xsi:type="string">percentage</data>
+            <data name="updateData/discountValue" xsi:type="string">20</data>
+            <data name="tax" xsi:type="string">10</data>
+            <data name="discountType" xsi:type="null"/>
+            <data name="discountValue" xsi:type="null"/>
+            <constraint name="Magento\Checkout\Test\Constraint\AssertOrderSuccessPlacedMessage" />
+            <constraint name="Magento\NegotiableQuote\Test\Constraint\AssertOrderCorrectInAdmin" />
+        </variation>
+    </testCase>
+</config>
